@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Viagem</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .form-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <div class="container py-4">
+        <div class="form-container">
+            <h2 class="mb-4 text-primary">Editar Viagem</h2>
+
+            <!-- Mensagens de erro/sucesso -->
+            <div th:if="${errorMessage}" class="alert alert-danger" role="alert">
+                <span th:text="${errorMessage}"></span>
+            </div>
+
+            <form th:action="@{'/admin/viagens/editar/' + ${idViagem}}" method="post">
+                <!-- Campo Destino -->
+                <div class="mb-3">
+                    <label for="destino" class="form-label">Destino</label>
+                    <input type="text" class="form-control" id="destino" name="destino"
+                           th:value="${viagem.destino}" required>
+                </div>
+
+                <!-- Campo Horário de Embarque -->
+                <div class="mb-3">
+                    <label for="embarcacao" class="form-label">Horário de Embarque</label>
+                    <input type="time" class="form-control" id="embarcacao" name="embarcacao"
+                           th:value="${viagem.embarcacao}" required>
+                    <small class="text-muted">Formato 24 horas (ex: 14:30)</small>
+                </div>
+
+                <!-- Campo Duração -->
+                <div class="mb-4">
+                    <label for="duracao" class="form-label">Duração (minutos)</label>
+                    <input type="number" class="form-control" id="duracao" name="duracao"
+                           th:value="${viagem.duracao}" min="1" required>
+                </div>
+
+                <!-- Botões -->
+                <div class="d-flex justify-content-between">
+                    <a th:href="@{/dashboard}" class="btn btn-secondary">Cancelar</a>
+                    <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

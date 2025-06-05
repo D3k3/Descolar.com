@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro</title>
+</head>
+<body>
+    <h1>Cadastro</h1>
+    <form th:action="@{/cadastro}" th:object="${usuario}" method="post">
+        <div>
+            <label>Nome:</label>
+            <input type="text" th:field="*{nome}" required>
+        </div>
+        
+        <div>
+            <label>Tipo de Usuário:</label>
+            <select th:field="*{tipo}" required>
+                <option value="">Selecione...</option>
+                <option value="NORMAL">Usuário Normal</option>
+                <option value="ADMIN">Administrador</option>
+            </select>
+        </div>
+        
+        <button type="submit">Cadastrar e Entrar</button>
+    </form>
+</body>
+</html>
